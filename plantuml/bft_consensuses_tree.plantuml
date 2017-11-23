@@ -1,14 +1,34 @@
 @startuml
+title Consensus protocols for replicated state machines
+
+package "BFT School" {
+object "Paxos" as paxos
+object "Raft" as raft
 object "Rampart" as rampart
 object "SecureRing" as securering
 object "DLS" as dls
 object "PBFT" as pbft
 object "HoneyBadgerBFT" as hbbft
-object "Tendermint" as tendermint
-object "Polkadot" as polkadot
-object "Casper FFG" as ffg
+}
+
+package "Cryptoeconomis" {
+object "Generic PoS" as pos
 object "Casper CBC" as cbc
 object "Ouroboros" as ouroboros
+object "PoW" as pow
+object "Casper FFG" as ffg
+pow --> ffg
+}
+
+package "Hybrids" {
+object "Tendermint" as tendermint
+object "Polkadot" as polkadot
+}
+
+pos --> cbc
+pos --> ouroboros
+pos --> tendermint
+pos --> ffg
 
 rampart --> pbft
 securering --> pbft
