@@ -1,0 +1,21 @@
+@startuml
+boundary "Transaction\nsidechain" as tsc
+database "Channel state" as state
+participant "Validator 1" as val1
+participant "Validator 2" as val2
+collections "Worker nodes" as workers
+collections "Verifier nodes" as verifiers
+collections "Arbiter nodes" as arbiters
+
+autonumber
+
+tsc -> state: INIT_CWSC<>
+workers -> val1: AGREE
+workers -> val2: AGREE
+... timeout ...
+val1 -> val2: [worker_resps] encrypted
+val2 -> val1: [worker_resps] encrypted
+val1 -> val2: decryption_key
+val2 -> val1: decryption_key
+val1 -> state: GATHERED<workers>
+@enduml
