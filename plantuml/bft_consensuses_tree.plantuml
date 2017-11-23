@@ -1,17 +1,32 @@
 @startuml
+object "Rampart" as rampart
+object "SecureRing" as securering
 object "DLS" as dls
 object "PBFT" as pbft
 object "HoneyBadgerBFT" as hbbft
 object "Tendermint" as tendermint
 object "Polkadot" as polkadot
+object "Casper FFG" as ffg
 object "Casper CBC" as cbc
+object "Ouroboros" as ouroboros
 
-dls --> pbft
+rampart --> pbft
+securering --> pbft
 pbft --> hbbft
-pbft --> tendermint
+dls --> tendermint
 hbbft --> polkadot
 tendermint --> polkadot
-pbft --> cbc
+pbft --> ffg
+
+object dls {
+  set of partially synchronous algos
+  ⅓ byzantine tolerance
+}
+
+object tendermint {
+  partially synchronous
+  ⅓ byzantine tolerance
+}
 
 object polkadot {
   (no complete consensus description)
