@@ -1,0 +1,14 @@
+@startuml
+object "DLS" as dls
+object "PBFT" as pbft
+object "HoneyBadgerBFT" as hbbft
+object "Tendermint" as tendermint
+object "Polkadot" as polkadot
+object "Casper CBC" as cbc
+
+dls --> pbft
+pbft --> hbbft
+pbft --> tendermint
+hbbft --> polkadot
+pbft --> cbc
+@enduml
