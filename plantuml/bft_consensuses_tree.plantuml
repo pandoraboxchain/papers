@@ -10,5 +10,15 @@ dls --> pbft
 pbft --> hbbft
 pbft --> tendermint
 hbbft --> polkadot
+tendermint --> polkadot
 pbft --> cbc
+
+object polkadot {
+  (no complete consensus description)
+  Validators sign blocks in Replay chain
+  - selected by Nominated Proof of Stake (NPoS)
+  - incentivised by (1) inflation (2) transaction fees
+  - sr-NaS: prevented by long stake withholding
+  - lr-NaS: prevented by hardcoding block hash snapshots in clients code
+}
 @enduml
